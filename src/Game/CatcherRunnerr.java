@@ -18,7 +18,6 @@ public class CatcherRunnerr {
 	void setUp() {
 		frame.add(panel);
 		frame.setVisible(true);
-		new Dimension(WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addKeyListener(panel);
 		frame.pack();

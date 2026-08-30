@@ -13,11 +13,15 @@ final int MENU = 0;
 final int GAME = 1;
 final int END = 2;
 int currentState = MENU;
+ObjectManager manager = new ObjectManager();
 Font titleFont;
-void drawMenuState() {
+
+	void drawMenuState() {
 		
 	}
-	
+	void updateGameState() {
+		//manager.update();
+	}
 	
 	void drawGameState(){
 		

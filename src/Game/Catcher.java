@@ -1,5 +1,7 @@
 package Game;
 
 public class Catcher{
-	were
+	void update() {
+		//super.update();
+	}
 }
