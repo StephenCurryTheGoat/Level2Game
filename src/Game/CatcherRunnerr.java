@@ -10,7 +10,7 @@ public class CatcherRunnerr {
 	public static void main(String[] args) {
 		CatcherRunnerr runner = new CatcherRunnerr();
 		runner.setUp();
-	}
+	}//
 	CatcherRunnerr(){
 		frame = new JFrame();
 		panel = new GamePanel();
