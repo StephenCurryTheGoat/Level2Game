@@ -13,7 +13,8 @@ final int MENU = 0;
 final int GAME = 1;
 final int END = 2;
 int currentState = MENU;
-ObjectManager manager = new ObjectManager();
+Basket b = new Basket(250,700,50,50);
+ObjectManager manager = new ObjectManager(b);
 Font titleFont;
 
 	void drawMenuState() {
