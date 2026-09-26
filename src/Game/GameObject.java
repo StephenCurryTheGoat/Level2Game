@@ -1,6 +1,9 @@
 package Game;
 
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
 
 public class GameObject {
 int x;
@@ -8,7 +11,7 @@ int y;
 int width;
 int height;
 int speed = 0;
-boolean isVisible = true;
+boolean isActive = true;
 Rectangle collisionBox;
 
 	GameObject(int x, int y, int width, int height){

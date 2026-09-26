@@ -9,13 +9,14 @@ import javax.imageio.ImageIO;
 public class Apple extends GameObject {
 	public static BufferedImage image;
 	public static boolean needImage = true;
-	public static boolean gotImage = false;	
+	public static boolean gotImage = false;
+
 	
 	Apple(int x, int y, int width, int height){
 		super(x,y,width,height);
 		speed = 1;
 		if(needImage) {
-			loadImage("apple.java");
+			loadImage("apple.png");
 		}
 	}
 	void update() {
@@ -42,4 +43,6 @@ public class Apple extends GameObject {
 	        needImage = false;
 	    }
 	}
+	
+	
 }
