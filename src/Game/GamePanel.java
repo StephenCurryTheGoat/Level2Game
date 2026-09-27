@@ -1,5 +1,6 @@
 package Game;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -26,7 +27,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 	Timer frameDraw;
-	Dimension panelDim = new Dimension(500, 500);
+	Dimension panelDim = new Dimension(500, 800);
 
 	GamePanel() {
 		titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -64,15 +65,40 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	}
 
 	void drawMenuState(Graphics g) {
+g.setColor(Color.BLUE);
+g.fillRect(0, 0, CatcherRunnerr.WIDTH, CatcherRunnerr.HEIGHT);
+g.setFont(titleFont);
+g.setColor(Color.BLACK);
+g.drawString("Apple Fall", 150 , 50);
+g.setFont(titleFont2);
+g.setColor(Color.BLACK);
+g.drawString("Press ENTER to start", 170, 300);
+g.setFont(titleFont2);
+g.setColor(Color.BLACK);
+g.drawString("Press space for instructions", 130,600);
 
 	}
 
 	void drawGameState(Graphics g) {
-
+if(gotImage) {
+	g.drawImage(image, 0 ,0,CatcherRunnerr.WIDTH, CatcherRunnerr.HEIGHT, null);
+}else {
+	g.setColor(Color.blue);
+	g.fillRect(0,0,CatcherRunnerr.WIDTH, CatcherRunnerr.HEIGHT);
+}
+g.drawString("b", CatcherRunnerr.WIDTH, CatcherRunnerr.HEIGHT);
+manager.draw(g);
+if(b.isActive == false) {
+	currentState = END;
+}
 	}
 
 	void drawEndState(Graphics g) {
-
+g.setColor(Color.red);
+g.fillRect(0, 0, CatcherRunnerr.WIDTH, CatcherRunnerr.HEIGHT);
+g.setFont(titleFont);
+g.setColor(Color.WHITE);
+g.drawString("Apple Fall", 80, 50);
 	}
 
 	@Override
@@ -84,8 +110,33 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+	if(currentState == END) {
+		currentState = MENU;
+		b = new Basket(250, 700, 50, 50);
+		manager = new ObjectManager(b);
+	}else {
+		currentState++;
 	}
+	if(currentState == GAME) {
+		startGame();
+	}
+	if(currentState == END) {
+		frameDraw.stop();
+	}
+}
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+	//System.out.println("UP");
+	b.up();
+	if(b.y < 0) {
+		b.y = 0;
+	}
+}
+		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+			b.down();
+		}
+}
+	
 
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -118,5 +169,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 			needImage = false;
 		}
 	}
+	 void startGame() {
+		 frameDraw = new Timer(100, manager);
+		 frameDraw.start();
+	 }
 
 }
