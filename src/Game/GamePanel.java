@@ -98,7 +98,13 @@ g.setColor(Color.red);
 g.fillRect(0, 0, CatcherRunnerr.WIDTH, CatcherRunnerr.HEIGHT);
 g.setFont(titleFont);
 g.setColor(Color.WHITE);
-g.drawString("Apple Fall", 80, 50);
+g.drawString("Apple Fall", 150, 50);
+g.setFont(titleFont2);
+g.setColor(Color.yellow);
+g.drawString("You got " + manager.getScore() + " apples", 170, 300 );
+g.setFont(titleFont2);
+g.setColor(Color.white);
+g.drawString("Press Enter to restart", 130, 600);
 	}
 
 	@Override
@@ -133,8 +139,27 @@ if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 	}
 }
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+			//System.out.println("DOWN");
 			b.down();
+			if(b.y > CatcherRunnerr.HEIGHT - b.height) {
+				b.y = CatcherRunnerr.HEIGHT - b.height;
+			}
 		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			//System.out.println("RIGHT");
+			b.right();
+			if(b.x > CatcherRunnerr.HEIGHT - b.height) {
+				b.x = CatcherRunnerr.WIDTH - b.width;
+			}
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			//System.out.println("LEFT");
+			b.left();
+			if(b.x<0) {
+				b.x=0;
+			}
+		}
+		
 }
 	
 

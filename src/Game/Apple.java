@@ -43,6 +43,6 @@ public class Apple extends GameObject {
 	        needImage = false;
 	    }
 	}
-	
-	
 }
+	
+

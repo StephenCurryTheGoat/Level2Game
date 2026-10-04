@@ -31,7 +31,7 @@ public class ObjectManager implements ActionListener {
 			Apple al = apples.get(i);
 			al.update();
 			if (al.y > CatcherRunnerr.HEIGHT) {
-				// al.isActive =
+				al.isActive = false;
 			}
 
 		}
@@ -42,13 +42,26 @@ public class ObjectManager implements ActionListener {
 			Apple al = apples.get(i);
 			al.draw(g);
 		}
-		//for()
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+	void checkCollision() {
+		for(Apple apple: apples) {
+			for(Basket b: basket) {
+				if(b.collisionBox.intersects(apple.collisionBox)) {
+					apple.isActive = false;
+					b.isActive = false;
+					score++;
+			}
+			}
+		}
+	}
+	int getScore() {
+		return score;
 	}
 
 }
