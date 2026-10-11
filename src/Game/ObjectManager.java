@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class ObjectManager implements ActionListener {
@@ -17,7 +18,7 @@ public class ObjectManager implements ActionListener {
 		this.b = b;
 	}
 
-	void addApples(Apple a) {
+	void addApples() {
 		apples.add(new Apple(ran.nextInt(CatcherRunnerr.WIDTH), 0, 50, 50));
 
 	}
@@ -35,6 +36,15 @@ public class ObjectManager implements ActionListener {
 			}
 
 		}
+		for(int i = 0; i < apples.size(); i++) {
+			Basket bl = basket.get(i);
+			bl.update();
+			if(bl.y < -bl.height) {
+				bl.isActive = false;
+			}
+		}
+		purgeObjects();
+		checkCollision();
 	}
 	void draw(Graphics g) {
 		b.draw(g);
@@ -42,13 +52,19 @@ public class ObjectManager implements ActionListener {
 			Apple al = apples.get(i);
 			al.draw(g);
 		}
+		for(int i = 0; i < basket.size(); i++) {
+			Basket bl = basket.get(i);
+			bl.draw(g);
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+addApples();
 	}
+	
+	
 	void checkCollision() {
 		for(Apple apple: apples) {
 			for(Basket b: basket) {
@@ -57,6 +73,16 @@ public class ObjectManager implements ActionListener {
 					b.isActive = false;
 					score++;
 			}
+			}
+		}
+	}
+	
+	void purgeObjects() {
+		Iterator <Apple> iter = apples.iterator();
+		while(iter.hasNext()) {
+			Apple a = iter.next();
+			if(a.isActive == false) {
+				iter.remove();
 			}
 		}
 	}

@@ -14,7 +14,7 @@ public class Apple extends GameObject {
 	
 	Apple(int x, int y, int width, int height){
 		super(x,y,width,height);
-		speed = 1;
+		speed = 20;
 		if(needImage) {
 			loadImage("apple.png");
 		}
